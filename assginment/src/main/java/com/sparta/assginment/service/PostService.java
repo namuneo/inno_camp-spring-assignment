@@ -3,6 +3,7 @@ package com.sparta.assginment.service;
 import com.sparta.assginment.domian.Post;
 import com.sparta.assginment.domian.PostRepository;
 import com.sparta.assginment.domian.PostRequestDto;
+import com.sparta.assginment.domian.PostResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,5 +25,12 @@ public class PostService {
         );
         post.update(requestDto);
         return post.getId();
+    }
+
+    @Transactional
+    public PostResponseDto findById (Long id) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다 id =" +id));
+        return new PostResponseDto(post);
     }
 }

@@ -1,5 +1,6 @@
 package com.sparta.assginment.domian;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -16,8 +17,9 @@ import java.time.LocalDateTime;
 public abstract class TImestamped { // abstract는 상송이 되어야지만 사용할 수 있는 클래스
 
     @CreatedDate
-    private LocalDateTime createdAt; // LocalDateTime은 시간을 나타내는 자료형 생성 잘짜
+    protected LocalDateTime createdAt; // LocalDateTime은 시간을 나타내는 자료형 생성 잘짜
 
+    @JsonIgnore
     @LastModifiedDate
     private LocalDateTime modifiedAt; // 수정 시간
 }

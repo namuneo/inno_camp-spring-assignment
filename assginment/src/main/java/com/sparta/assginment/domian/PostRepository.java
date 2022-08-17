@@ -7,6 +7,7 @@ import java.util.List;
 // JpaRepository를 상속해 findall, delete, findBuId등등 사용하겠다.
 public interface PostRepository extends JpaRepository<Post, Long> { //JpaRepository<클래스, Id 타입>
     List<Post> findAllByOrderByCreatedAtDesc();
+//    List<Post> findAllById();
     // findAll By OrderBy ModifiedAt Desc()
     // OrderBy는 정리를 해달라
     // ModifiedAt을 기준으로

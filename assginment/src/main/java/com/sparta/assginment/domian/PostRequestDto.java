@@ -1,5 +1,6 @@
 package com.sparta.assginment.domian;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 
 @Getter

@@ -3,11 +3,13 @@ package com.sparta.assginment.controller;
 import com.sparta.assginment.domian.Post;
 import com.sparta.assginment.domian.PostRepository;
 import com.sparta.assginment.domian.PostRequestDto;
+import com.sparta.assginment.domian.PostResponseDto;
 import com.sparta.assginment.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
@@ -17,8 +19,14 @@ public class PostController {
 
     // 전체 게시글 조회
     @GetMapping("/api/posts")
-    public List<Post> getPost() {
+    public List<Post> getAllPost() {
         return postRepository.findAllByOrderByCreatedAtDesc();
+    }
+
+    // 게시글 조회
+    @GetMapping("/api/posts/{id}")
+    public PostResponseDto getPost(@PathVariable Long id) {
+        return postService.findById(id); // List에서 Optional로 반환 타입을 변경했을 때 findById 메소드의 매개변수 id의 에러가 사라졌다.
     }
 
     // 게시글 작성
