@@ -24,7 +24,7 @@ public class Post extends TImestamped { // Timestamped는 생성, 수정 시간�
     @Column(nullable = false) // 작성 내용
     private String content;
 
-    @JsonIgnore
+
     @Column(nullable = false) // 비밀번호
     private String password;
 

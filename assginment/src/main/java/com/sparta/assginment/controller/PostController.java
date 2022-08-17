@@ -36,9 +36,16 @@ public class PostController {
         return postRepository.save(post);
     }
 
-    // 삭제
+    //삭제
     @DeleteMapping("/api/posts/{id}")
-    public Long deletePost(@PathVariable Long id) { // 경로에 있는 변수를 받기 위해 @PathVariable 사용
+    public Long deletePost(@PathVariable Long id, @RequestBody PostRequestDto requestDto) {
+        Post post = postRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("존재하고 있지 않습니다.")
+        );
+
+        if (!post.getPassword().equals(requestDto.getPassword())) {
+            throw new IllegalArgumentException("일치하지 않습니다.");
+        }
         postRepository.deleteById(id);
         return id;
     }

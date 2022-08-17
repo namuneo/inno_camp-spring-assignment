@@ -23,6 +23,12 @@ public class PostService {
                 // NullPointerException 가리키는 값이 없다.
                 // IllegalArgumentException 매개변수가 잘못 되었다.
         );
+
+        // 비밀번호 일치시에만 게시물 수정가능
+        if (!post.getPassword().equals(requestDto.getPassword())) {
+            throw new IllegalArgumentException("일치하지 않습니다.");
+        }
+
         post.update(requestDto);
         return post.getId();
     }
